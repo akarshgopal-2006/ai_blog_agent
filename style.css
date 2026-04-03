@@ -70,6 +70,8 @@ html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
@@ -78,6 +80,7 @@ body {
     color: var(--text-primary);
     min-height: 100vh;
     overflow-x: hidden;
+    width: 100%;
     line-height: 1.6;
 }
 
@@ -1870,9 +1873,11 @@ body {
         overflow-x: auto;
         padding-bottom: var(--space-md);
         justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+        gap: var(--space-sm);
     }
-    .pipe-step { min-width: 80px; }
-    .pipe-connector { min-width: 40px; }
+    .pipe-step { min-width: 70px; }
+    .pipe-connector { min-width: 30px; flex-shrink: 0; }
 
     .section-title { font-size: 1.5rem; }
     .pipeline-card { flex-direction: column; }
@@ -1985,9 +1990,29 @@ body {
     .metrics-grid { grid-template-columns: repeat(2, 1fr); }
     .traffic-stats { grid-template-columns: 1fr; gap: var(--space-xs); }
     .det-metric { flex-direction: column; align-items: flex-start; gap: 4px; }
+    
+    /* Font resizing */
     .section-title { font-size: 1.3rem; }
+    .card-title { font-size: 1rem; }
+    .stat-value { font-size: 1.25rem; }
+    
+    /* Layout wrapping */
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+    }
+    .header-controls { width: 100%; display: flex; flex-direction: column; gap: var(--space-sm); }
+    .header-controls .btn, .header-controls select { width: 100%; }
+
+    .input-group { flex-direction: column; }
+    .input-group .btn { width: 100%; justify-content: center; }
     
     /* Nav bar tight fit */
     .nav-brand .brand-name { font-size: 1.1rem; }
     .nav-actions { display: none; } /* Hide extra nav actions on very small screens to fit brand */
+    
+    /* Padding scale */
+    .card, .stat-card { padding: var(--space-md); }
+    .main { padding: var(--space-sm); }
 }
