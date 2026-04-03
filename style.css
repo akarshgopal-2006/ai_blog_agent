@@ -1001,6 +1001,12 @@ body {
     gap: var(--space-xs);
 }
 
+.keywords-layout {
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+}
+
 .cluster-kw {
     padding: 2px 8px;
     background: rgba(255,255,255,0.05);
@@ -1944,10 +1950,23 @@ body {
     }
     .nav-links::-webkit-scrollbar { display: none; }
     .nav-link span { display: none; }
+    .nav-link { padding: 8px; justify-content: center; width: 100%; }
+    .nav-links { display: grid; grid-template-columns: repeat(5, 1fr); justify-items: center; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
     .dashboard-grid { grid-template-columns: 1fr; }
     .metrics-grid { grid-template-columns: repeat(3, 1fr); }
-    .generator-layout { flex-direction: column; }
+    .generator-layout { grid-template-columns: 1fr; }
     .keywords-layout { flex-direction: column; }
     .analytics-grid { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .table-wrapper { overflow-x: auto; }
+}
+
+@media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .traffic-stats { grid-template-columns: 1fr; gap: var(--space-xs); }
+    .det-metric { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .section-title { font-size: 1.3rem; }
+    .nav-actions { display: none; } /* Hide extra nav actions on very small screens to fit brand */
 }
