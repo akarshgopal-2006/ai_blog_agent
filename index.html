@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BlogForge AI — Scalable AI-powered blog generation engine that converts keyword intent into high-ranking, GEO-optimized, conversion-focused content.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="BlogForge AI">
+    <title>BlogForge AI — Intelligent Blog Generation Engine</title>
+    <link rel="canonical" href="https://blogforgeai.com/dashboard">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="BlogForge AI — Intelligent Blog Generation Engine">
+    <meta property="og:description" content="Scalable AI-powered blog generation engine that converts keyword intent into high-ranking, GEO-optimized, conversion-focused content.">
+    <meta property="og:url" content="https://blogforgeai.com/dashboard">
+    <meta property="og:image" content="https://blogforgeai.com/og-preview.png">
+    <meta property="og:site_name" content="BlogForge AI">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BlogForge AI — AI Blog Generation Engine">
+    <meta name="twitter:description" content="Convert keyword intent into high-ranking, SEO-optimized blogs with structured prompt pipelines.">
+    <meta name="twitter:image" content="https://blogforgeai.com/og-preview.png">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- No-JS Fallback -->
+    <noscript>
+        <div style="padding: 40px; text-align: center; color: #f8fafc; background: #0a0a1a; min-height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+            <h1>BlogForge AI</h1>
+            <p style="margin-top: 16px; color: #94a3b8;">This application requires JavaScript to run. Please enable JavaScript in your browser settings.</p>
+        </div>
+    </noscript>
+
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="mainNav">
+        <div class="nav-brand">
+            <span class="brand-name">BlogForge <span class="brand-ai">AI</span></span>
+        </div>
+        <div class="nav-links">
+            <button class="nav-link active" data-section="dashboard" id="navDashboard">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+                Dashboard
+            </button>
+            <button class="nav-link" data-section="keywords" id="navKeywords">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/></svg>
+                Keywords
+            </button>
+            <button class="nav-link" data-section="pipeline" id="navPipeline">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/></svg>
+                Pipeline
+            </button>
+            <button class="nav-link" data-section="generator" id="navGenerator">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
+                Generate
+            </button>
+            <button class="nav-link" data-section="analytics" id="navAnalytics">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
+                Analytics
+            </button>
+        </div>
+        <div class="nav-actions">
+            <button class="btn-icon" id="btnBatchMode" title="Batch Mode" aria-label="Open batch generation mode">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zm-2 4a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/></svg>
+            </button>
+            <button class="btn-icon" id="btnExport" title="Export All" aria-label="Export all generated content">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- ==================== DASHBOARD SECTION ==================== -->
+        <section class="section active" id="sectionDashboard">
+            <div class="section-header">
+                <div>
+                    <h1 class="section-title">Command Center</h1>
+                    <p class="section-subtitle">Your AI-powered blog generation overview</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-primary" id="btnQuickGenerate">
+                        <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
+                        Quick Generate
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card" id="statBlogsGenerated">
+                    <div class="stat-icon stat-icon-purple">
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/></svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="valBlogsGenerated">0</span>
+                        <span class="stat-label">Blogs Generated</span>
+                    </div>
+                    <div class="stat-trend stat-trend-up" id="trendBlogsGenerated">—</div>
+                </div>
+                <div class="stat-card" id="statAvgSEO">
+                    <div class="stat-icon stat-icon-blue">
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="valAvgSEO">0%</span>
+                        <span class="stat-label">Avg SEO Score</span>
+                    </div>
+                    <div class="stat-trend stat-trend-up" id="trendAvgSEO">—</div>
+                </div>
+                <div class="stat-card" id="statKeywords">
+                    <div class="stat-icon stat-icon-green">
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/></svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="valKeywords">0</span>
+                        <span class="stat-label">Keywords Tracked</span>
+                    </div>
+                    <div class="stat-trend stat-trend-up" id="trendKeywords">—</div>
+                </div>
+                <div class="stat-card" id="statTraffic">
+                    <div class="stat-icon stat-icon-orange">
+                        <svg viewBox="0 0 20 20" fill="currentColor"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="valTraffic">0</span>
+                        <span class="stat-label">Est. Monthly Traffic</span>
+                    </div>
+                    <div class="stat-trend stat-trend-up" id="trendTraffic">—</div>
+                </div>
+            </div>
+
+            <!-- Pipeline Status & Recent Activity -->
+            <div class="dashboard-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Pipeline Flow</h2>
+                        <span class="badge badge-live">LIVE</span>
+                    </div>
+                    <div class="pipeline-visual" id="pipelineVisual">
+                        <div class="pipe-step completed" data-step="1">
+                            <div class="pipe-dot"></div>
+                            <div class="pipe-label">Keyword<br>Intake</div>
+                        </div>
+                        <div class="pipe-connector"></div>
+                        <div class="pipe-step completed" data-step="2">
+                            <div class="pipe-dot"></div>
+                            <div class="pipe-label">Intent<br>Mapping</div>
+                        </div>
+                        <div class="pipe-connector"></div>
+                        <div class="pipe-step active" data-step="3">
+                            <div class="pipe-dot"></div>
+                            <div class="pipe-label">SERP<br>Analysis</div>
+                        </div>
+                        <div class="pipe-connector"></div>
+                        <div class="pipe-step" data-step="4">
+                            <div class="pipe-dot"></div>
+                            <div class="pipe-label">Content<br>Generation</div>
+                        </div>
+                        <div class="pipe-connector"></div>
+                        <div class="pipe-step" data-step="5">
+                            <div class="pipe-dot"></div>
+                            <div class="pipe-label">SEO<br>Optimize</div>
+                        </div>
+                        <div class="pipe-connector"></div>
+                        <div class="pipe-step" data-step="6">
+                            <div class="pipe-dot"></div>
+                            <div class="pipe-label">Quality<br>Score</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Recent Generations</h2>
+                        <button class="btn-text" id="btnViewAll">View All →</button>
+                    </div>
+                    <div class="recent-list" id="recentList">
+                        <div class="empty-state">
+                            <svg viewBox="0 0 64 64" fill="none" width="48" height="48">
+                                <rect x="8" y="8" width="48" height="48" rx="8" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                                <path d="M24 32h16M32 24v16" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+                            </svg>
+                            <p>No blogs generated yet</p>
+                            <span>Start by adding keywords</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Metrics -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Performance Metrics</h2>
+                </div>
+                <div class="metrics-grid" id="metricsGrid">
+                    <div class="metric-card">
+                        <div class="metric-ring" data-value="0" data-color="#6366f1">
+                            <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="34" stroke-width="6" fill="none" stroke="#1e1b4b" /><circle cx="40" cy="40" r="34" stroke-width="6" fill="none" stroke="#6366f1" stroke-dasharray="213.6" stroke-dashoffset="213.6" stroke-linecap="round" class="metric-progress"/></svg>
+                            <span class="metric-val">0%</span>
+                        </div>
+                        <span class="metric-name">SEO Score</span>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-ring" data-value="0" data-color="#3b82f6">
+                            <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="34" stroke-width="6" fill="none" stroke="#1e1b4b" /><circle cx="40" cy="40" r="34" stroke-width="6" fill="none" stroke="#3b82f6" stroke-dasharray="213.6" stroke-dashoffset="213.6" stroke-linecap="round" class="metric-progress"/></svg>
+                            <span class="metric-val">0%</span>
+                        </div>
+                        <span class="metric-name">Readability</span>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-ring" data-value="0" data-color="#10b981">
+                            <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="34" stroke-width="6" fill="none" stroke="#1e1b4b" /><circle cx="40" cy="40" r="34" stroke-width="6" fill="none" stroke="#10b981" stroke-dasharray="213.6" stroke-dashoffset="213.6" stroke-linecap="round" class="metric-progress"/></svg>
+                            <span class="metric-val">0%</span>
+                        </div>
+                        <span class="metric-name">Naturalness</span>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-ring" data-value="0" data-color="#f59e0b">
+                            <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="34" stroke-width="6" fill="none" stroke="#1e1b4b" /><circle cx="40" cy="40" r="34" stroke-width="6" fill="none" stroke="#f59e0b" stroke-dasharray="213.6" stroke-dashoffset="213.6" stroke-linecap="round" class="metric-progress"/></svg>
+                            <span class="metric-val">0%</span>
+                        </div>
+                        <span class="metric-name">Snippet Ready</span>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-ring" data-value="0" data-color="#ec4899">
+                            <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="34" stroke-width="6" fill="none" stroke="#1e1b4b" /><circle cx="40" cy="40" r="34" stroke-width="6" fill="none" stroke="#ec4899" stroke-dasharray="213.6" stroke-dashoffset="213.6" stroke-linecap="round" class="metric-progress"/></svg>
+                            <span class="metric-val">0%</span>
+                        </div>
+                        <span class="metric-name">Keyword Density</span>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-ring" data-value="0" data-color="#8b5cf6">
+                            <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="34" stroke-width="6" fill="none" stroke="#1e1b4b" /><circle cx="40" cy="40" r="34" stroke-width="6" fill="none" stroke="#8b5cf6" stroke-dasharray="213.6" stroke-dashoffset="213.6" stroke-linecap="round" class="metric-progress"/></svg>
+                            <span class="metric-val">0%</span>
+                        </div>
+                        <span class="metric-name">Internal Links</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== KEYWORDS SECTION ==================== -->
+        <section class="section" id="sectionKeywords">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Keyword Intelligence</h2>
+                    <p class="section-subtitle">Analyze, cluster, and map keyword intent for optimal blog targeting</p>
+                </div>
+            </div>
+
+            <!-- Keyword Input -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Add Keywords</h2>
+                </div>
+                <div class="keyword-input-area">
+                    <div class="input-group">
+                        <input type="text" class="input" id="keywordInput" placeholder="Enter a keyword or phrase..." autocomplete="off">
+                        <button class="btn btn-primary" id="btnAddKeyword">
+                            <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/></svg>
+                            Add
+                        </button>
+                    </div>
+                    <div class="bulk-input-toggle">
+                        <button class="btn-text" id="btnBulkToggle">+ Bulk Import (paste multiple keywords)</button>
+                    </div>
+                    <div class="bulk-input hidden" id="bulkInputArea">
+                        <textarea class="textarea" id="bulkKeywords" rows="5" placeholder="Paste keywords, one per line..."></textarea>
+                        <button class="btn btn-secondary" id="btnBulkAdd">Import All</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Keyword Table & Clusters -->
+            <div class="keywords-layout">
+                <div class="card flex-2">
+                    <div class="card-header">
+                        <h2 class="card-title">Keyword Analysis</h2>
+                        <div class="header-controls">
+                            <select class="select" id="keywordFilter">
+                                <option value="all">All Intents</option>
+                                <option value="informational">Informational</option>
+                                <option value="navigational">Navigational</option>
+                                <option value="transactional">Transactional</option>
+                                <option value="commercial">Commercial</option>
+                            </select>
+                            <button class="btn btn-secondary btn-sm" id="btnClusterAll">Auto-Cluster</button>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="table" id="keywordTable">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="selectAllKeywords"></th>
+                                    <th>Keyword</th>
+                                    <th>Intent</th>
+                                    <th>Volume</th>
+                                    <th>Difficulty</th>
+                                    <th>Cluster</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="keywordTableBody">
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                        <div class="empty-state" id="keywordsEmpty">
+                            <svg viewBox="0 0 64 64" fill="none" width="48" height="48">
+                                <circle cx="28" cy="28" r="18" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                                <path d="M40 40l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+                            </svg>
+                            <p>No keywords added yet</p>
+                            <span>Add keywords above to begin analysis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card flex-1">
+                    <div class="card-header">
+                        <h2 class="card-title">Keyword Clusters</h2>
+                    </div>
+                    <div class="clusters-view" id="clustersView">
+                        <div class="empty-state small">
+                            <p>Clusters will appear after analysis</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SERP Gap Analysis -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">SERP Gap Analysis</h2>
+                    <button class="btn btn-secondary btn-sm" id="btnRunSERPAnalysis">Run Analysis</button>
+                </div>
+                <div class="serp-results" id="serpResults">
+                    <div class="empty-state">
+                        <p>Select keywords and run SERP analysis to identify content gaps</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PIPELINE SECTION ==================== -->
+        <section class="section" id="sectionPipeline">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Prompt Pipeline</h2>
+                    <p class="section-subtitle">Structured 6-step prompt architecture for consistent, high-quality blog generation</p>
+                </div>
+            </div>
+
+            <div class="pipeline-container">
+                <!-- Step 1 -->
+                <div class="pipeline-card" data-pipeline="1">
+                    <div class="pipeline-number">01</div>
+                    <div class="pipeline-content">
+                        <h3 class="pipeline-title">Topic Research & Intent Mapping</h3>
+                        <p class="pipeline-desc">Analyze seed keywords, classify search intent, and map topic clusters to identify the optimal content angle.</p>
+                        <div class="pipeline-prompt">
+                            <div class="prompt-label">System Prompt Template</div>
+                            <pre class="prompt-code" id="prompt1">You are an expert SEO content strategist. Analyze the following keywords and determine:
+1. Primary search intent (informational/navigational/transactional/commercial)
+2. Topic cluster mapping with parent-child relationships
+3. Content gap opportunities in current SERP landscape
+4. Recommended content angle for maximum ranking potential
+5. Target audience persona based on keyword intent
+
+Keywords: {{KEYWORDS}}
+Niche: {{NICHE}}
+Geographic Target: {{GEO_TARGET}}</pre>
+                        </div>
+                        <div class="pipeline-config">
+                            <div class="config-row">
+                                <label>Temperature:</label>
+                                <input type="range" min="0" max="100" value="30" class="range" id="temp1">
+                                <span class="range-val">0.3</span>
+                            </div>
+                            <div class="config-row">
+                                <label>Max Tokens:</label>
+                                <span class="config-value">2,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pipeline-status">
+                        <span class="status-dot"></span>
+                        <span>Ready</span>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="pipeline-card" data-pipeline="2">
+                    <div class="pipeline-number">02</div>
+                    <div class="pipeline-content">
+                        <h3 class="pipeline-title">Title & Meta Generation</h3>
+                        <p class="pipeline-desc">Generate 5 SEO-optimized title variants and compelling meta descriptions with power words and emotional triggers.</p>
+                        <div class="pipeline-prompt">
+                            <div class="prompt-label">System Prompt Template</div>
+                            <pre class="prompt-code" id="prompt2">You are an expert headline copywriter specializing in SEO. Generate:
+1. 5 title variants (max 60 chars each) using power words
+2. 5 meta descriptions (max 155 chars) with clear CTAs
+3. URL slug recommendation (lowercase, hyphenated)
+4. Open Graph title and description
+5. Schema markup type recommendation
+
+Primary Keyword: {{PRIMARY_KEYWORD}}
+Secondary Keywords: {{SECONDARY_KEYWORDS}}
+Content Angle: {{CONTENT_ANGLE}}
+Target Audience: {{TARGET_AUDIENCE}}</pre>
+                        </div>
+                        <div class="pipeline-config">
+                            <div class="config-row">
+                                <label>Temperature:</label>
+                                <input type="range" min="0" max="100" value="70" class="range" id="temp2">
+                                <span class="range-val">0.7</span>
+                            </div>
+                            <div class="config-row">
+                                <label>Max Tokens:</label>
+                                <span class="config-value">1,500</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pipeline-status">
+                        <span class="status-dot"></span>
+                        <span>Ready</span>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="pipeline-card" data-pipeline="3">
+                    <div class="pipeline-number">03</div>
+                    <div class="pipeline-content">
+                        <h3 class="pipeline-title">Outline & Structure Generation</h3>
+                        <p class="pipeline-desc">Create a comprehensive H2/H3 outline with featured snippet targets, PAA sections, and strategic content placement.</p>
+                        <div class="pipeline-prompt">
+                            <div class="prompt-label">System Prompt Template</div>
+                            <pre class="prompt-code" id="prompt3">You are a content architect. Create a detailed blog outline:
+1. H2/H3 hierarchy following SEO best practices
+2. Featured snippet opportunity sections (paragraph/list/table)
+3. "People Also Ask" integration points
+4. Strategic CTA placement markers
+5. Internal link anchor text suggestions
+6. Estimated word count per section
+7. Key statistics/data points to include
+
+Title: {{SELECTED_TITLE}}
+Primary Keyword: {{PRIMARY_KEYWORD}}
+SERP Analysis: {{SERP_DATA}}
+Content Angle: {{CONTENT_ANGLE}}</pre>
+                        </div>
+                        <div class="pipeline-config">
+                            <div class="config-row">
+                                <label>Temperature:</label>
+                                <input type="range" min="0" max="100" value="40" class="range" id="temp3">
+                                <span class="range-val">0.4</span>
+                            </div>
+                            <div class="config-row">
+                                <label>Max Tokens:</label>
+                                <span class="config-value">3,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pipeline-status">
+                        <span class="status-dot"></span>
+                        <span>Ready</span>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="pipeline-card" data-pipeline="4">
+                    <div class="pipeline-number">04</div>
+                    <div class="pipeline-content">
+                        <h3 class="pipeline-title">Section-by-Section Content Generation</h3>
+                        <p class="pipeline-desc">Generate each section individually with natural keyword integration, varying sentence structure, and expertise signals.</p>
+                        <div class="pipeline-prompt">
+                            <div class="prompt-label">System Prompt Template</div>
+                            <pre class="prompt-code" id="prompt4">You are a subject matter expert and skilled writer. Write section content:
+
+Rules for natural, human-like writing:
+- Vary sentence length (mix short punchy + longer detailed)
+- Use transitional phrases naturally
+- Include personal insights and expert opinions
+- Add specific data, statistics, and examples
+- Maintain 1-2% keyword density naturally
+- Write at an 8th-grade reading level
+- Use active voice predominantly
+- Include conversational elements
+
+Section: {{SECTION_HEADING}}
+Context: {{PREVIOUS_SECTIONS_SUMMARY}}
+Keywords to integrate: {{SECTION_KEYWORDS}}
+Target word count: {{SECTION_WORD_COUNT}}
+Snippet target: {{SNIPPET_TYPE}}</pre>
+                        </div>
+                        <div class="pipeline-config">
+                            <div class="config-row">
+                                <label>Temperature:</label>
+                                <input type="range" min="0" max="100" value="75" class="range" id="temp4">
+                                <span class="range-val">0.75</span>
+                            </div>
+                            <div class="config-row">
+                                <label>Max Tokens:</label>
+                                <span class="config-value">4,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pipeline-status">
+                        <span class="status-dot"></span>
+                        <span>Ready</span>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="pipeline-card" data-pipeline="5">
+                    <div class="pipeline-number">05</div>
+                    <div class="pipeline-content">
+                        <h3 class="pipeline-title">Internal Linking & CTA Injection</h3>
+                        <p class="pipeline-desc">Strategically place internal links using topical relevance scoring and insert conversion-optimized CTAs.</p>
+                        <div class="pipeline-prompt">
+                            <div class="prompt-label">System Prompt Template</div>
+                            <pre class="prompt-code" id="prompt5">You are a conversion optimization specialist. Enhance the content:
+
+1. Insert 3-5 internal links using contextual anchor text
+2. Add 2-3 conversion CTAs (soft, medium, hard)
+3. Include email capture hook in the content flow
+4. Add related content suggestions
+5. Insert schema-ready FAQ section
+6. Add author expertise signals (E-E-A-T)
+
+Blog Content: {{FULL_CONTENT}}
+Site Map: {{INTERNAL_PAGES}}
+Primary CTA: {{PRIMARY_CTA}}
+Related Topics: {{RELATED_TOPICS}}</pre>
+                        </div>
+                        <div class="pipeline-config">
+                            <div class="config-row">
+                                <label>Temperature:</label>
+                                <input type="range" min="0" max="100" value="50" class="range" id="temp5">
+                                <span class="range-val">0.5</span>
+                            </div>
+                            <div class="config-row">
+                                <label>Max Tokens:</label>
+                                <span class="config-value">5,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pipeline-status">
+                        <span class="status-dot"></span>
+                        <span>Ready</span>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="pipeline-card" data-pipeline="6">
+                    <div class="pipeline-number">06</div>
+                    <div class="pipeline-content">
+                        <h3 class="pipeline-title">SEO Refinement & Humanization Pass</h3>
+                        <p class="pipeline-desc">Final optimization pass — keyword density tuning, readability enhancement, AI detection mitigation, and quality scoring.</p>
+                        <div class="pipeline-prompt">
+                            <div class="prompt-label">System Prompt Template</div>
+                            <pre class="prompt-code" id="prompt6">You are an SEO editor and content quality analyst. Perform final review:
+
+1. Verify keyword density is 1-2% for primary keyword
+2. Ensure Flesch-Kincaid reading level is 60-70
+3. Vary sentence structures to reduce AI detection
+4. Add unique phrasings and idiomatic expressions
+5. Verify all H2/H3 headers contain target keywords
+6. Check for duplicate/thin sections
+7. Validate internal link placement
+8. Ensure meta title/description alignment with content
+9. Add alt text suggestions for images
+10. Generate final SEO score report
+
+Content: {{OPTIMIZED_CONTENT}}
+Primary Keyword: {{PRIMARY_KEYWORD}}
+SEO Targets: {{SEO_TARGETS}}</pre>
+                        </div>
+                        <div class="pipeline-config">
+                            <div class="config-row">
+                                <label>Temperature:</label>
+                                <input type="range" min="0" max="100" value="20" class="range" id="temp6">
+                                <span class="range-val">0.2</span>
+                            </div>
+                            <div class="config-row">
+                                <label>Max Tokens:</label>
+                                <span class="config-value">6,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pipeline-status">
+                        <span class="status-dot"></span>
+                        <span>Ready</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== GENERATOR SECTION ==================== -->
+        <section class="section" id="sectionGenerator">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Blog Generator</h2>
+                    <p class="section-subtitle">Configure and generate SEO-optimized, AI-powered blog content</p>
+                </div>
+            </div>
+
+            <div class="generator-layout">
+                <!-- Config Panel -->
+                <div class="generator-config">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Generation Settings</h2>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Primary Keyword *</label>
+                            <input type="text" class="input" id="genPrimaryKeyword" placeholder="e.g., best project management tools">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Secondary Keywords</label>
+                            <input type="text" class="input" id="genSecondaryKeywords" placeholder="Comma-separated keywords...">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Target Niche / Industry</label>
+                            <input type="text" class="input" id="genNiche" placeholder="e.g., SaaS, Healthcare, Finance">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Geographic Target (GEO)</label>
+                            <select class="select" id="genGeo">
+                                <option value="global">Global</option>
+                                <option value="us">United States</option>
+                                <option value="uk">United Kingdom</option>
+                                <option value="india">India</option>
+                                <option value="eu">European Union</option>
+                                <option value="australia">Australia</option>
+                                <option value="canada">Canada</option>
+                                <option value="custom">Custom Region</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Target Word Count</label>
+                            <select class="select" id="genWordCount">
+                                <option value="1000">Short (~1,000 words)</option>
+                                <option value="1500" selected>Medium (~1,500 words)</option>
+                                <option value="2500">Long (~2,500 words)</option>
+                                <option value="4000">Pillar (~4,000 words)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Content Tone</label>
+                            <select class="select" id="genTone">
+                                <option value="professional">Professional</option>
+                                <option value="conversational">Conversational</option>
+                                <option value="authoritative">Authoritative</option>
+                                <option value="friendly">Friendly & Approachable</option>
+                                <option value="technical">Technical / Expert</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Primary CTA</label>
+                            <input type="text" class="input" id="genCTA" placeholder="e.g., Start Free Trial, Book a Demo">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Internal Pages (for linking)</label>
+                            <textarea class="textarea" id="genInternalPages" rows="3" placeholder="Enter page URLs, one per line..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Advanced Options</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="genSchemaMarkup" checked> Include Schema Markup
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="genFAQ" checked> Generate FAQ Section
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="genSnippetOptimize" checked> Optimize for Featured Snippets
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="genHumanize" checked> AI Humanization Pass
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-lg btn-full" id="btnGenerate">
+                            <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
+                            Generate Blog
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Output Panel -->
+                <div class="generator-output">
+                    <div class="card output-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Generated Content</h2>
+                            <div class="header-controls">
+                                <button class="btn btn-secondary btn-sm" id="btnCopyContent" disabled>
+                                    <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg>
+                                    Copy
+                                </button>
+                                <button class="btn btn-secondary btn-sm" id="btnExportHTML" disabled>Export HTML</button>
+                                <button class="btn btn-secondary btn-sm" id="btnExportMD" disabled>Export MD</button>
+                            </div>
+                        </div>
+
+                        <!-- Generation Progress -->
+                        <div class="generation-progress hidden" id="generationProgress">
+                            <div class="progress-header">
+                                <span class="progress-label" id="progressLabel">Initializing pipeline...</span>
+                                <span class="progress-percent" id="progressPercent">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <div class="progress-steps" id="progressSteps">
+                                <div class="p-step active">Intent Analysis</div>
+                                <div class="p-step">Title/Meta</div>
+                                <div class="p-step">Outline</div>
+                                <div class="p-step">Content</div>
+                                <div class="p-step">CTA/Links</div>
+                                <div class="p-step">SEO Pass</div>
+                            </div>
+                        </div>
+
+                        <!-- Output Content -->
+                        <div class="output-content" id="outputContent">
+                            <div class="empty-state">
+                                <svg viewBox="0 0 64 64" fill="none" width="56" height="56">
+                                    <path d="M20 12h24l8 8v32a4 4 0 01-4 4H20a4 4 0 01-4-4V16a4 4 0 014-4z" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                                    <path d="M44 12v8h8" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                                    <path d="M24 28h16M24 34h16M24 40h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.2"/>
+                                </svg>
+                                <p>Configure settings and click Generate</p>
+                                <span>Your optimized blog will appear here</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEO Scorecard -->
+                    <div class="card seo-scorecard hidden" id="seoScorecard">
+                        <div class="card-header">
+                            <h2 class="card-title">SEO Scorecard</h2>
+                        </div>
+                        <div class="scorecard-grid" id="scorecardGrid">
+                            <!-- Dynamically populated -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ANALYTICS SECTION ==================== -->
+        <section class="section" id="sectionAnalytics">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Analytics & Insights</h2>
+                    <p class="section-subtitle">Comprehensive content performance metrics and SEO health monitoring</p>
+                </div>
+            </div>
+
+            <div class="analytics-grid">
+                <!-- Content Quality Breakdown -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Content Quality Breakdown</h2>
+                    </div>
+                    <div class="quality-bars" id="qualityBars">
+                        <div class="quality-row">
+                            <span class="quality-label">Keyword Optimization</span>
+                            <div class="quality-bar-track">
+                                <div class="quality-bar-fill" style="--width: 0%; --color: #6366f1;"></div>
+                            </div>
+                            <span class="quality-value">0%</span>
+                        </div>
+                        <div class="quality-row">
+                            <span class="quality-label">Readability Score</span>
+                            <div class="quality-bar-track">
+                                <div class="quality-bar-fill" style="--width: 0%; --color: #3b82f6;"></div>
+                            </div>
+                            <span class="quality-value">0%</span>
+                        </div>
+                        <div class="quality-row">
+                            <span class="quality-label">AI Naturalness</span>
+                            <div class="quality-bar-track">
+                                <div class="quality-bar-fill" style="--width: 0%; --color: #10b981;"></div>
+                            </div>
+                            <span class="quality-value">0%</span>
+                        </div>
+                        <div class="quality-row">
+                            <span class="quality-label">Snippet Readiness</span>
+                            <div class="quality-bar-track">
+                                <div class="quality-bar-fill" style="--width: 0%; --color: #f59e0b;"></div>
+                            </div>
+                            <span class="quality-value">0%</span>
+                        </div>
+                        <div class="quality-row">
+                            <span class="quality-label">Internal Linking</span>
+                            <div class="quality-bar-track">
+                                <div class="quality-bar-fill" style="--width: 0%; --color: #ec4899;"></div>
+                            </div>
+                            <span class="quality-value">0%</span>
+                        </div>
+                        <div class="quality-row">
+                            <span class="quality-label">E-E-A-T Signals</span>
+                            <div class="quality-bar-track">
+                                <div class="quality-bar-fill" style="--width: 0%; --color: #8b5cf6;"></div>
+                            </div>
+                            <span class="quality-value">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Traffic Projections -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Traffic Projections</h2>
+                    </div>
+                    <div class="traffic-chart" id="trafficChart">
+                        <canvas id="trafficCanvas" width="500" height="250"></canvas>
+                    </div>
+                    <div class="traffic-stats">
+                        <div class="traffic-stat">
+                            <span class="traffic-stat-val" id="estMonthly">0</span>
+                            <span class="traffic-stat-label">Est. Monthly Visits</span>
+                        </div>
+                        <div class="traffic-stat">
+                            <span class="traffic-stat-val" id="estCTR">0%</span>
+                            <span class="traffic-stat-label">Projected CTR</span>
+                        </div>
+                        <div class="traffic-stat">
+                            <span class="traffic-stat-val" id="estPosition">--</span>
+                            <span class="traffic-stat-label">Est. SERP Position</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Detection Analysis -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">AI Detection Analysis</h2>
+                    </div>
+                    <div class="ai-detection" id="aiDetection">
+                        <div class="detection-gauge">
+                            <svg viewBox="0 0 200 120" class="gauge-svg">
+                                <defs>
+                                    <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#22c55e"/>
+                                        <stop offset="50%" stop-color="#F97316"/>
+                                        <stop offset="100%" stop-color="#ef4444"/>
+                                    </linearGradient>
+                                </defs>
+                                <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="rgba(192,192,192,0.1)" stroke-width="12" stroke-linecap="round"/>
+                                <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="url(#gaugeGrad)" stroke-width="12" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="251.2" id="gaugeArc"/>
+                                <text x="100" y="90" text-anchor="middle" fill="white" font-size="28" font-weight="700" id="gaugeValue">0%</text>
+                                <text x="100" y="110" text-anchor="middle" fill="#94a3b8" font-size="11">AI Detection Score</text>
+                            </svg>
+                        </div>
+                        <div class="detection-metrics">
+                            <div class="det-metric">
+                                <span class="det-label">Perplexity</span>
+                                <span class="det-value" id="detPerplexity">--</span>
+                            </div>
+                            <div class="det-metric">
+                                <span class="det-label">Burstiness</span>
+                                <span class="det-value" id="detBurstiness">--</span>
+                            </div>
+                            <div class="det-metric">
+                                <span class="det-label">Vocabulary Diversity</span>
+                                <span class="det-value" id="detVocab">--</span>
+                            </div>
+                            <div class="det-metric">
+                                <span class="det-label">Sentence Variation</span>
+                                <span class="det-value" id="detSentence">--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scalability Metrics -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Scalability & Batch Metrics</h2>
+                    </div>
+                    <div class="scale-metrics">
+                        <div class="scale-stat">
+                            <div class="scale-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
+                            <div class="scale-info">
+                                <span class="scale-val" id="scaleBlogs">0</span>
+                                <span class="scale-label">Blogs / Hour</span>
+                            </div>
+                        </div>
+                        <div class="scale-stat">
+                            <div class="scale-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+                            <div class="scale-info">
+                                <span class="scale-val" id="scaleConsistency">0%</span>
+                                <span class="scale-label">Quality Consistency</span>
+                            </div>
+                        </div>
+                        <div class="scale-stat">
+                            <div class="scale-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+                            <div class="scale-info">
+                                <span class="scale-val" id="scaleKeywords">0</span>
+                                <span class="scale-label">Keywords Processed</span>
+                            </div>
+                        </div>
+                        <div class="scale-stat">
+                            <div class="scale-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                            <div class="scale-info">
+                                <span class="scale-val" id="scaleAvgTime">0s</span>
+                                <span class="scale-label">Avg Gen Time</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Generated Blogs History -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Generation History</h2>
+                    <button class="btn btn-secondary btn-sm" id="btnClearHistory">Clear History</button>
+                </div>
+                <div class="history-list" id="historyList">
+                    <div class="empty-state">
+                        <p>No generation history yet</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Batch Mode Modal -->
+    <div class="modal-overlay hidden" id="batchModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Batch Generation Mode</h2>
+                <button class="btn-icon modal-close" id="btnCloseBatch"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-desc">Generate multiple blogs simultaneously. Enter one keyword per line with optional configurations.</p>
+                <div class="form-group">
+                    <label class="form-label">Keywords (one per line)</label>
+                    <textarea class="textarea" id="batchKeywords" rows="8" placeholder="best project management tools&#10;how to improve team productivity&#10;agile vs waterfall methodology"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Default Settings</label>
+                    <div class="batch-settings">
+                        <select class="select" id="batchWordCount">
+                            <option value="1500">1,500 words</option>
+                            <option value="2500">2,500 words</option>
+                        </select>
+                        <select class="select" id="batchTone">
+                            <option value="professional">Professional</option>
+                            <option value="conversational">Conversational</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="batch-preview" id="batchPreview">
+                    <span class="batch-count">0 blogs queued</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="btnCancelBatch">Cancel</button>
+                <button class="btn btn-primary" id="btnStartBatch">
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
+                    Start Batch Generation
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="engine.js"></script>
+    <script src="analytics.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
