@@ -354,6 +354,7 @@ body {
     transition: var(--transition-normal);
     overflow: hidden;
     background-clip: padding-box;
+    min-width: 0; /* Fixes grid item blowout */
 }
 
 .stat-card::before {
@@ -449,6 +450,8 @@ body {
     transition: var(--transition-normal);
     margin-bottom: var(--space-md);
     position: relative;
+    min-width: 0; /* Fixes grid flex child blowout */
+    max-width: 100%; /* Ensures constraints on mobile */
 }
 
 .card::before {
@@ -1855,6 +1858,7 @@ body {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         padding-bottom: var(--space-xs);
+        max-width: 100%; /* Prevent nav flex blowout */
     }
     .main { padding: var(--space-md); }
     .stats-grid { grid-template-columns: 1fr; }
@@ -1870,11 +1874,14 @@ body {
     .header-actions .btn { width: 100%; justify-content: center; }
     
     .pipeline-visual {
+        display: flex;
         overflow-x: auto;
         padding-bottom: var(--space-md);
         justify-content: flex-start;
         -webkit-overflow-scrolling: touch;
         gap: var(--space-sm);
+        width: 100%;
+        max-width: 100%;
     }
     .pipe-step { min-width: 70px; }
     .pipe-connector { min-width: 30px; flex-shrink: 0; }
