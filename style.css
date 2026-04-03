@@ -1856,6 +1856,24 @@ body {
     .main { padding: var(--space-md); }
     .stats-grid { grid-template-columns: 1fr; }
     .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    
+    /* Dashboard specific fixes */
+    .section-header { 
+        flex-direction: column; 
+        gap: var(--space-md); 
+        align-items: stretch;
+    }
+    .header-actions { width: 100%; display: flex; }
+    .header-actions .btn { width: 100%; justify-content: center; }
+    
+    .pipeline-visual {
+        overflow-x: auto;
+        padding-bottom: var(--space-md);
+        justify-content: flex-start;
+    }
+    .pipe-step { min-width: 80px; }
+    .pipe-connector { min-width: 40px; }
+
     .section-title { font-size: 1.5rem; }
     .pipeline-card { flex-direction: column; }
     .pipeline-number { width: auto; font-size: 1.5rem; }
@@ -1968,5 +1986,8 @@ body {
     .traffic-stats { grid-template-columns: 1fr; gap: var(--space-xs); }
     .det-metric { flex-direction: column; align-items: flex-start; gap: 4px; }
     .section-title { font-size: 1.3rem; }
+    
+    /* Nav bar tight fit */
+    .nav-brand .brand-name { font-size: 1.1rem; }
     .nav-actions { display: none; } /* Hide extra nav actions on very small screens to fit brand */
 }
