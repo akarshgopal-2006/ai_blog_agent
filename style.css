@@ -1238,6 +1238,13 @@ body {
     grid-template-columns: 380px 1fr;
     gap: var(--space-md);
     align-items: start;
+    width: 100%;
+    max-width: 100%;
+}
+
+.generator-layout > * {
+    min-width: 0; /* ABSOLUTE fix for grid child blowout */
+    max-width: 100%;
 }
 
 .generator-config .card {
@@ -1485,6 +1492,12 @@ body {
     padding: var(--space-sm) var(--space-md);
     background: rgba(255,255,255,0.04);
     border-radius: var(--radius-md);
+    min-width: 0;
+}
+
+.scorecard-label, .scorecard-value {
+    min-width: 0;
+    word-wrap: break-word;
 }
 
 .scorecard-label {
